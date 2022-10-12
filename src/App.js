@@ -31,7 +31,7 @@ function App() {
   const [selectOption, setSelectOption] = useState("");
 
   function addDog() {
-    // we create a new object that we will eventually add to the dogs state as a new dog
+    // we create a new object that we will eventually add to the dogs state as a new dog. This code is now being updated dynamically from state
     const rover = {
       id: generateUniqueID(),
       name: newDog.name,
@@ -46,6 +46,7 @@ function App() {
     setDogs([rover, ...dogs]);
   }
 
+  // this function will be used in the handleSubmit function. It should be called last in that function
   function resetDogForm() {
     setNewDog({
       id: "",
@@ -61,25 +62,30 @@ function App() {
     setSelectOption("");
   }
 
+  // this function handles all of the text, number, email inputs
   function handleTextChange(e) {
     setNewDog({ ...newDog, [e.target.id]: e.target.value });
   }
 
+  // This function submits the new Dog to the app (addDog()), updates the dogs slice of state with the new dog and then resets the form (resetDogForm)
   function handleSubmit(e) {
     e.preventDefault();
     addDog();
     resetDogForm();
   }
 
+  // this function finds the do to be removed and uses filter to remove it from the data. It is used below in the JSX
   function removeDog(dogID) {
     const filteredDogArray = dogs.filter((dog) => dog.id !== dogID);
     setDogs(filteredDogArray);
   }
 
+  // This handles showing and hiding the form. You could essentially use this in the JSX instead of making a new function
   function toggleNewDogForm() {
     setNewDogForm(!showNewDogForm);
   }
 
+  // this function handles the strike through based on whether the present state in dogs is true or false.
   function updateDogAttendance(dogId) {
     const dogArray = [...dogs];
     const index = dogArray.findIndex((dog) => dogId === dog.id);

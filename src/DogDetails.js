@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 export default function DogDetails({ dog }) {
+  // this state is used to toggle showing and hiding the details
   const [showDetails, setShowDetails] = useState(false);
+
+  // this handles whether we see the details of the dog or not. You could actually place this code in the JSX instead
   function toggleDogDetails() {
     setShowDetails(!showDetails);
   }
